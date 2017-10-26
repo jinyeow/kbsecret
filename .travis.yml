@@ -7,7 +7,7 @@ sudo: required
 before_install:
   - bash test/ci/setup.sh
 script:
-  - COVERALLS=1 TEST_NO_KEYBASE=1 bundle exec rake test
+  - COVERALLS=1 bundle exec rake test
 after_script:
   - bash test/ci/teardown.sh
 notifications:
