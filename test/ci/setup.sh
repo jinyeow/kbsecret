@@ -13,8 +13,10 @@ set -e
 
 sudo apt-get install -f
 
+run_keybase
+
 sudo apt-get install expect
 device_name=$(date +%s%3N)
-expect ./scripts/setup.expect "${device_name}"
+expect ./test/ci/setup.expect "${device_name}"
 
 run_keybase
