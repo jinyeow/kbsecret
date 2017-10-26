@@ -2,4 +2,4 @@
 
 set -ev
 
-expect ./teardown.expect
+expect ./scripts/teardown.expect

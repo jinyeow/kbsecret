@@ -15,6 +15,6 @@ sudo apt-get install -f
 
 sudo apt-get install expect
 device_name=$(date +%s%3N)
-expect ./setup.expect "${device_name}"
+expect ./scripts/setup.expect "${device_name}"
 
 run_keybase
