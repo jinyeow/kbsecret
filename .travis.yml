@@ -3,9 +3,13 @@ rvm:
     - 2.3
     - 2.4
 cache: bundler
-sudo: false
+sudo: required
+before_install:
+  - bash scripts/setup.sh
 script:
   - COVERALLS=1 TEST_NO_KEYBASE=1 bundle exec rake test
+after_script:
+  - bash scripts/teardown.sh
 notifications:
   irc:
     channels:

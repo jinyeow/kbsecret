@@ -1,0 +1,32 @@
+#!/usr/bin/expect
+
+set device_name [lindex $argv 0]
+set password $::env(KBSECRETCI_PASSWORD)
+set force_conservative 1
+
+if {$force_conservative} {
+	set send_slow {1 .1}
+	proc send {ignore arg} {
+		sleep .1
+		exp_send -s -- $arg
+	}
+}
+
+set timeout -1
+spawn keybase login kbsecretci
+match_max 100000
+expect -exact "Please enter the Keybase passphrase for kbsecretci (6+ characters): "
+send -- "${password}\r"
+expect -exact "\r\r
+\r
+\r
+\[35m************************************************************\r
+\[39m\[35m* Name your new device!                                    *\r
+\[39m\[35m************************************************************\r
+\[39m\r
+\r
+\r
+Enter a public name for this device: "
+send -- "${device_name}\r"
+expect eof
+
